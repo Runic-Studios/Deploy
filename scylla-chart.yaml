@@ -1,0 +1,13 @@
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+metadata:
+  name: scylladb
+chartName: https://helm.scylladb.com/scylla-operator
+releaseName: scylladb
+namespace: database
+valuesInline:
+  scylla:
+    cluster:
+      size: 1
+      storage:
+        capacity: 10Gi
