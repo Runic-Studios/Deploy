@@ -5,3 +5,4 @@ resources:
 - traefik-config.yaml
 - argocd/
 - jenkins/
+- registry/
