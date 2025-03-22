@@ -1,0 +1,9 @@
+{
+  "auths": {
+    "registry.runicrealms.com": {
+      "auth": "cm9ib3QkamVua2luczpNRDUyekROSUNHbHg4cXJrSGFjVUdlQWNjaE5Zc001VQ==",
+      "username": "robot$jenkins",
+      "password": "MD52zDNICGlx8qrkHacUGeAcchNYsM5U"
+    }
+  }
+}

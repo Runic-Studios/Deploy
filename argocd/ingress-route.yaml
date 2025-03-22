@@ -29,7 +29,6 @@ metadata:
   namespace: argocd
 spec:
   entryPoints:
-    - web
     - websecure
   routes:
     - match: HostRegexp(`argocd.runicrealms.com`)

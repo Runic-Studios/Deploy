@@ -1,0 +1,35 @@
+expose:
+  type: ingress
+  tls:
+    enabled: false
+  ingress:
+    hosts:
+      core: registry.runicrealms.com
+    controller: default
+    annotations:
+      kubernetes.io/ingress.class: "traefik"
+
+externalURL: http://registry.runicrealms.com
+
+persistence:
+  enabled: true
+  persistentVolumeClaim:
+    registry:
+      existingClaim: harbor-registry-pvc
+    jobservice:
+      existingClaim: harbor-jobservice-pvc
+    chartmuseum:
+      existingClaim: harbor-chartmuseum-pvc
+    database:
+      existingClaim: harbor-database-pvc
+    redis:
+      existingClaim: harbor-redis-pvc
+    trivy:
+      existingClaim: harbor-trivy-pvc
+
+notary:
+  enabled: false
+chartmuseum:
+  enabled: false
+trivy:
+  enabled: false
