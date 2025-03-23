@@ -34,8 +34,8 @@ mirrors:
 - Create a jenkins user at `jenkins.runicrealms.com`
 
 ### Harbor
-- Login to `registry.runicrealms.com`, create a project named `build` and a project named `jenkins`
-- Create a robot user named `jenkins` (will be named `robot$jenkins`) with permission to read/modify all repositories and `build` and `jenkins`
+- Login to `registry.runicrealms.com`, create a project named `build` and a project named `jenkins`. There should also be a default one called `library`.
+- Create a robot user named `jenkins` (will be named `robot$jenkins`) with permission to read/modify all repositories in projects `build`, `jenkins` and `library`
   - At this stage you need to go back and update the `regcred` secret you installed in the `jenkins` namespace with this robot password
 
 ### Jenkins
@@ -43,6 +43,7 @@ Install plugins:
 - Docker
 - Kubernetes for Jenkins
 - Git/GitHub
+- Pipeline Utility Steps
 
 Add Kubernetes Cloud:
 - Named `kubernetes`
