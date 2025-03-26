@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nexus
+  namespace: nexus
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`nexus.runicrealms.com`)
+      kind: Rule
+      services:
+        - name: nexus-repository-manager
+          port: 8081

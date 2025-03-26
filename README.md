@@ -1,4 +1,3 @@
-
 # Runic Realms Kustomization Stack
 This is the basic set of manifests that should be applied on top of a K3s cluster.
 
@@ -11,7 +10,7 @@ In the future this will be moved to use something like Ansible to ensure declara
 - Install K3s with default configuration (should include Traefik!)
 - Install K9s, Helm, Kustomize
 - Duplicate all files that end in .template (these are secrets that need to be filled in)
-- Apply the stack with `kustomize build --enable-helm | kubectl apply -f -`
+- Apply the stack with `./apply.sh`
 - Add this to `/etc/rancher/k3s/registries.yaml`:
 ```yaml
 mirrors:
@@ -26,6 +25,7 @@ mirrors:
   "insecure-registries": ["registry.runicrealms.com"],
 }
 ```
+- In `/etc/hosts`, set all of `registry.runicrealms.com`, `jenkins.runicrealms.com`, `argocd.runicrealms.com` and `nexus.runicrealms.com` to point to your k3s host.
 
 ###
  Passwords
@@ -44,6 +44,10 @@ Install plugins:
 - Kubernetes for Jenkins
 - Git/GitHub
 - Pipeline Utility Steps
+
+### Nexus
+- Login to `nexus.runicrealms.com`, create an admin password
+- Make sure to allow anonymous pulls from nexus
 
 Add Kubernetes Cloud:
 - Named `kubernetes`
@@ -67,6 +71,10 @@ Add credentials:
   - Username should be `robot$jenkins`
   - Password is the one generated that harbor gave you
   - ID `docker-registry-credentials`
+- Nexus:
+  - Type is base user/pass
+  - ID `nexus-credentials`
+  - Username and password should come from your Nexus login
 
 Add global trusted pipeline library (manage jenkins -> system):
 - Named `Jenkins-Shared-Lib`

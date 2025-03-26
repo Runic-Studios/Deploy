@@ -6,3 +6,5 @@ resources:
 - argocd/
 - jenkins/
 - harbor/
+- agones/
+- nexus/

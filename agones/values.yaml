@@ -1,0 +1,27 @@
+agones:
+  allocator:
+    disableMTLS: true
+    disableTLS: true
+    replicas: 1
+    service:
+      serviceType: ClusterIP
+      http:
+        enabled: false
+      grpc:
+#        enabled: false
+        port: 80
+        serviceType: ClusterIP
+  extensions:
+    replicas: 1
+  controller:
+    replicas: 1
+  ping:
+    replicas: 1
+    http:
+      serviceType: ClusterIP
+    udp:
+      serviceType: ClusterIP
+gameservers:
+  namespaces:
+    - realm
+    - realm-dev
