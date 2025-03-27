@@ -57,15 +57,15 @@ Add Kubernetes Cloud:
 
 Add credentials:
 - GitHub:
-  - Git credential type
+  - SSH credential type
   - ID `github-ssh`
   - Username `git`
   - Private RSA key you generate, and add to the corresponding GitHub account
   - For us, this account is @RunicRealmsGitHub on GitHub
 - Discord: For the discord webhook
-  - type: base user/pass
+  - type: secret text
   - ID `discord-webhook`
-  - Password is just the discord-generated URL webhook
+  - Secret is just the discord-generated URL webhook
 - Docker registry:
   - Type is basic user/pass
   - Username should be `robot$jenkins`
