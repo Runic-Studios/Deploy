@@ -44,6 +44,7 @@ Install plugins:
 - Kubernetes for Jenkins
 - Git/GitHub
 - Pipeline Utility Steps
+- Discord Notifier
 
 ### Nexus
 - Login to `nexus.runicrealms.com`, create an admin password
@@ -79,11 +80,14 @@ Add credentials:
 Add global trusted pipeline library (manage jenkins -> system):
 - Named `Jenkins-Shared-Lib`
 - Default ref `main`
-- Points to modern SCM with https://github.com/Runic-Studios/Jenkins-Shared-Lib
+- Points to modern SCM with git@github.com:Runic-Studios/Jenkins-Shared-Lib, using our stored git credentials
 - Uses credentials that we defined earlier
 
-Create multi-branch build configuration: (Realm-Velocity)
-- Named `Realm-Velocity`
-- SCM `git@github.com:Runic-Studios/Realm-Velocity.git` with our configured credentials
+Modify security settings:
+- Navigate to Manage Jenkins -> Security -> Git Host Key Verification Configuration, change to "Accept First Connection"
+
+Create multi-branch build configurations for the following projects:
+- Names: `Realm-Velocity`, `Velagones`, `Trove`
+- SCMs: `git@github.com:Runic-Studios/Realm-Velocity.git`, `git@github.com:Runic-Studios/Velagones.git`, `git@github.com:Runic-Studios/Trove.git`
 - Branches filter by expression `dev|main`
-- Discard old items
+- Discard old items after 7 days
