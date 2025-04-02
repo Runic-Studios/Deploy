@@ -30,6 +30,10 @@ persistence:
   path: /certs
 
 ports:
+  minecraft:
+    port: 25565
+    expose:
+      default: true
   traefik:
     port: 9000
     expose:
