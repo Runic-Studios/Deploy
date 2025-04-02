@@ -7,7 +7,6 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls.certresolver: cloudflare
 spec:
   entryPoints:
-    - web
     - websecure
   routes:
     - match: Host(`argocd.runicrealms.com`)

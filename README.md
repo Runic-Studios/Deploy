@@ -6,26 +6,24 @@ In the future this will be moved to use something like Ansible to ensure declara
 ## Setup Steps
 
 ### Installation
-
-- Install K3s with default configuration (should include Traefik!)
+- Install K3s with default configuration
+  - You should disable the traefik installation with the `--disable=traefik` flag. This is because we will install it manually for greater control.
 - Install K9s, Helm, Kustomize
 - Duplicate all files that end in .template (these are secrets that need to be filled in)
 - Apply the stack with `./apply.sh`
-- Add this to `/etc/rancher/k3s/registries.yaml`:
-```yaml
-mirrors:
-  registry.runicrealms.com:
-    endpoint:
-      - "http://registry.runicrealms.com"
-```
-- Add to `/etc/docker/daemon.json`:
-```yaml
-{
-  "debug": true,
-  "insecure-registries": ["registry.runicrealms.com"],
-}
-```
-- In `/etc/hosts`, set all of `registry.runicrealms.com`, `jenkins.runicrealms.com`, `argocd.runicrealms.com` and `nexus.runicrealms.com` to point to your k3s host.
+
+### Tailscale and Cloudflare
+- The current setup involves a cluster that is completely hidden behind a tailscale VPN.
+  - Cloudflare manages DNS resolution and points all subdomains (`registry`, `argocd`, `nexus`, `jenkins`) to the k3s node IP in the tailscale network.
+    - These connections cannot be proxied through cloudflare
+  - The tailscale network must have the setting for automatic HTTPS <b>disabled</b>
+    - This is because it will attempt to overwrite our existing letsencrypt certs causes much pain
+- You must create a cloudflare API key with the following permissions:
+  - Zone.zone read
+  - Zone.DNS edit
+  - Permission to see the correct domain project (`runicrealms.com`)
+- This API Key must be supplied to `traefik/cloudflare-secret.yaml`. Ensure to not include a newline in this secret.
+- If all is setup correctly, you should now be able to access subdomains `registry`, `argocd`, `nexus` and `jenkins` when connected to tailscale, with proper letsencrypt TLS certs (created with DNS-01 challenge).
 
 ### Passwords
 - Modify the harbor password at `registry.runicrealms.com` from the default
@@ -90,3 +88,4 @@ Create multi-branch build configurations for the following projects:
 - SCMs: `git@github.com:Runic-Studios/Realm-Velocity.git`, `git@github.com:Runic-Studios/Velagones.git`, `git@github.com:Runic-Studios/Trove.git`
 - Branches filter by expression `dev|main`
 - Discard old items after 7 days
+
