@@ -60,6 +60,10 @@ Add credentials:
   - Username `git`
   - Private RSA key you generate, and add to the corresponding GitHub account
   - For us, this account is @RunicRealmsGitHub on GitHub
+- GitHub PAT
+  - Secret text type
+  - ID `github-pat`
+  - Value should be a PAT with permission to create PRs on @RunicRealmsGithub
 - Discord: For the discord webhook
   - type: secret text
   - ID `discord-webhook`
