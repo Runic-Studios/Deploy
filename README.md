@@ -27,8 +27,7 @@ mirrors:
 ```
 - In `/etc/hosts`, set all of `registry.runicrealms.com`, `jenkins.runicrealms.com`, `argocd.runicrealms.com` and `nexus.runicrealms.com` to point to your k3s host.
 
-###
- Passwords
+### Passwords
 - Modify the harbor password at `registry.runicrealms.com` from the default
 - Get and modify the argocd default admin password at `argocd.runicrealms.com` from the default
 - Create a jenkins user at `jenkins.runicrealms.com`

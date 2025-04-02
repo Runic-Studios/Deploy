@@ -3,8 +3,11 @@ kind: IngressRoute
 metadata:
   name: jenkins
   namespace: jenkins
+  annotations:
+    traefik.ingress.kubernetes.io/router.tls.certresolver: cloudflare
 spec:
   entryPoints:
+    - web
     - websecure
   routes:
     - match: Host(`jenkins.runicrealms.com`)
@@ -12,3 +15,5 @@ spec:
       services:
         - name: jenkins
           port: 8080
+  tls:
+    certResolver: cloudflare
