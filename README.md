@@ -35,6 +35,10 @@ In the future this will be moved to use something like Ansible to ensure declara
 - Create a robot user named `jenkins` (will be named `robot$jenkins`) with permission to read/modify all repositories in projects `build`, `jenkins` and `library`
   - At this stage you need to go back and update the `regcred` secret you installed in the `jenkins` namespace with this robot password
 
+### Nexus
+- Login to `nexus.runicrealms.com`, create an admin password
+- Make sure to allow anonymous pulls from nexus
+
 ### Jenkins
 Install plugins:
 - Docker
@@ -42,10 +46,6 @@ Install plugins:
 - Git/GitHub
 - Pipeline Utility Steps
 - Discord Notifier
-
-### Nexus
-- Login to `nexus.runicrealms.com`, create an admin password
-- Make sure to allow anonymous pulls from nexus
 
 Add Kubernetes Cloud:
 - Named `kubernetes`
