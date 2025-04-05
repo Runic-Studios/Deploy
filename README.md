@@ -88,8 +88,8 @@ Modify security settings:
 - Navigate to Manage Jenkins -> Security -> Git Host Key Verification Configuration, change to "Accept First Connection"
 
 Create multi-branch build configurations for the following projects:
-- Names: `Realm-Velocity`, `Velagones`, `Trove`
-- SCMs: `git@github.com:Runic-Studios/Realm-Velocity.git`, `git@github.com:Runic-Studios/Velagones.git`, `git@github.com:Runic-Studios/Trove.git`
+- Names: `Realm-Velocity`, `Realm-Paper`, `Velagones`, `Trove`
+- SCMs: `git@github.com:Runic-Studios/Realm-Velocity.git`, `git@github.com:Runic-Studios/Realm-Paper.git`, `git@github.com:Runic-Studios/Velagones.git`, `git@github.com:Runic-Studios/Trove.git`
 - Branches filter by expression `dev|main`
 - Discard old items after 7 days
 
