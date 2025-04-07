@@ -7,8 +7,12 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Runic-Studios/Realm-deployment.git
-    path: env/realm
+    path: .
     targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
+        - realm-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: realm

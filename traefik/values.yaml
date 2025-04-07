@@ -30,8 +30,12 @@ persistence:
   path: /certs
 
 ports:
-  minecraft:
+  realm:
     port: 25565
+    expose:
+      default: true
+  realm-dev:
+    port: 25566
     expose:
       default: true
   traefik:
