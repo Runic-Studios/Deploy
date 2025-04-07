@@ -21,6 +21,7 @@ agones:
       serviceType: ClusterIP
     udp:
       serviceType: ClusterIP
+  featureGates: "PortPolicyNone=true"
 gameservers:
   namespaces:
     - realm
