@@ -1,0 +1,9 @@
+{
+  "auths": {
+    "registry.runicrealms.com": {
+      "auth": "BASE64 AUTH HERE, should be robot$jenkins:PASSWORD, encoded with base64",
+      "username": "robot$jenkins",
+      "password": "PASSWORD_HERE"
+    }
+  }
+}

@@ -6,4 +6,4 @@ resources:
 - service.yaml
 - ingress-route.yaml
 - service-account.yaml
-- regcred-secret.yaml
+- regcred-sealed.yaml
