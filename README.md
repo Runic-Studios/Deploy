@@ -130,6 +130,14 @@ Create multi-branch build configurations for the following projects:
 - Branches filter by expression `dev|main`
 - Discard old items after 7 days
 
+Modify SCM settings:
+- This is highly recommended to do for Realm-Paper and Realm-Velocity since they have large commit histories, but can be done for other build jobs as well:
+  - Branch Sources -> Git -> Add Behaviours
+    - Advanced clone behaviours:
+      - Disable fetch tags
+      - Enable honour refspec on initial clone
+      - Enable shallow clone with depth 1
+
 ## Development Steps
 
 These are the steps required in order for you to not only deploy the Realm, but to develop code, run build jobs, enable CD, etc.
@@ -160,3 +168,8 @@ These must be built and pushed to the harbor register in order for Jenkins to be
 - Put this zip file inside `Deploy/artifact`
 - Run `oras login -u admin -p PASSWORD_HERE registry.runicrealms.com`
 - Run `Deploy/artifact/push-rr-worlds.sh`
+
+### Add Base Images
+- Clone `git@github.com:Runic-Studios/Realm-Paper-Base.git` and `git@github.com:Runic-Studios/Realm-Paper-Base.git`
+  - For both, run `./push.sh` (you must have oras installed)
+
