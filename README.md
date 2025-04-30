@@ -153,3 +153,10 @@ These must be built and pushed to the harbor register in order for Jenkins to be
   - Velagones
   - Realm-Paper
   - Realm-Velocity
+
+### Upload world artifacts
+- Download the `rr-worlds.zip` file from an RR developer.
+  - This contains both Alterra and dungeons zipped as folders within it
+- Put this zip file inside `Deploy/artifact`
+- Run `oras login -u admin -p PASSWORD_HERE registry.runicrealms.com`
+- Run `Deploy/artifact/push-rr-worlds.sh`
