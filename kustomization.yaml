@@ -8,3 +8,4 @@ resources:
 - harbor/
 - agones/
 - nexus/
+- secret/
