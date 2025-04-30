@@ -62,6 +62,7 @@ In the future this will be moved to use something like Ansible to ensure declara
 
 ### Harbor
 - Login to `registry.runicrealms.com`, create a project named `build` and a project named `jenkins`. There should also be a default one called `library`.
+  - These should all be public projects
 - Create a robot user named `jenkins` (will be named `robot$jenkins`) with permission to read/modify all repositories in projects `build`, `jenkins` and `library`
   - At this stage you need to go back and update the `regcred` secret you installed in the `jenkins` namespace with this robot password.
 
@@ -128,3 +129,27 @@ Create multi-branch build configurations for the following projects:
   - `git@github.com:Runic-Studios/Palimpsest.git`
 - Branches filter by expression `dev|main`
 - Discard old items after 7 days
+
+## Development Steps
+
+These are the steps required in order for you to not only deploy the Realm, but to develop code, run build jobs, enable CD, etc.
+
+### Install
+- Install docker cli
+- Install oras cli
+
+### Add Jenkins Agents
+These must be built and pushed to the harbor register in order for Jenkins to be able to build anything.
+
+- Clone `git@github.com:Runic-Studios/Jenkins-Shared-Lib.git`
+  - Run `docker login -u admin https://registry.runicrealms.com` and enter your docker password
+  - Run `agents/push.sh`
+  - You may want to clean up after using `Deploy/cleanup.sh`, which removes all docker images
+
+### Populate Harbor Registry
+- Build dev branches of Jenkins items in this order:
+  - Palimpsest
+  - Trove
+  - Velagones
+  - Realm-Paper
+  - Realm-Velocity
