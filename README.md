@@ -40,7 +40,6 @@ In the future this will be moved to use something like Ansible to ensure declara
 
 ### Configure Secrets
 - Using the `kubeseal` client, re-generate the public certificate for your cluster by running `secret/gen-pub.sh`
-  - You should copy and commit this file to the one that exists in the Realm-Deployment argocd repo
 - Run the secret generation scripts:
   - Jenkins registry credentials:
     - Rename `jenkins/dockerconfig.json.template` to `jenkins/dockerconfig.json` and fill in credentials for this.
@@ -49,6 +48,9 @@ In the future this will be moved to use something like Ansible to ensure declara
   - Cloudflare DNS-01 Challenge:
     - You should have already written credentials in the previous step to `traefik/cloudflare.env`
     - Run the `traefik/gen-cloudflare.sh` script.
+  - Velocity Cluster-Wide Forwarding Secret:
+    - Create a file `rr-game/forwarding.secret` and put a plaintext secret for velocity forwarding
+    - Run the `rr-game/gen-velocity-forwarding.sh` script.
 
 ### Deploy
 - Run the `apply.sh` script.
@@ -163,9 +165,9 @@ These must be built and pushed to the harbor register in order for Jenkins to be
   - Realm-Velocity
 
 ### Upload world artifacts
-- Download the `Alterra.slime` and `dungeons.slime` file from an RR developer.
-- Put these files inside `Deploy/artifact`
-- Run `Deploy/artifact/push-rr-worlds.sh REGISTRY_USERNAME REGISTRY_PASSOWRD`
+- Download the `worlds.zip` file from an RR developer.
+- Put this file inside `rr-game`
+- Run `rr-game/push-worlds.sh REGISTRY_USERNAME REGISTRY_PASSOWRD`
 
 ### Add Base Images
 - Clone `git@github.com:Runic-Studios/Realm-Paper-Base.git` and `git@github.com:Runic-Studios/Realm-Paper-Base.git`

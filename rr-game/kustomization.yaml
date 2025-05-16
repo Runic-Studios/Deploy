@@ -1,0 +1,3 @@
+resources:
+- world-pv.yaml
+- forwarding-secret-sealed.yaml
