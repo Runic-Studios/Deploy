@@ -49,8 +49,8 @@ In the future this will be moved to use something like Ansible to ensure declara
     - You should have already written credentials in the previous step to `traefik/cloudflare.env`
     - Run the `traefik/gen-cloudflare.sh` script.
   - Velocity Cluster-Wide Forwarding Secret:
-    - Create a file `rr-game/forwarding.secret` and put a plaintext secret for velocity forwarding
-    - Run the `rr-game/gen-velocity-forwarding.sh` script.
+    - Create a file `realm/forwarding.secret` and put a plaintext secret for velocity forwarding
+    - Run the `realm/gen-velocity-forwarding.sh` script.
 
 ### Deploy
 - Run the `apply.sh` script.
@@ -166,8 +166,8 @@ These must be built and pushed to the harbor register in order for Jenkins to be
 
 ### Upload world artifacts
 - Download the `worlds.zip` file from an RR developer.
-- Put this file inside `rr-game`
-- Run `rr-game/push-worlds.sh REGISTRY_USERNAME REGISTRY_PASSOWRD`
+- Put this file inside `realm`
+- Run `realm/push-worlds.sh REGISTRY_USERNAME REGISTRY_PASSOWRD`
 
 ### Add Base Images
 - Clone `git@github.com:Runic-Studios/Realm-Paper-Base.git` and `git@github.com:Runic-Studios/Realm-Paper-Base.git`

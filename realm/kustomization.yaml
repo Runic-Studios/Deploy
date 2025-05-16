@@ -1,0 +1,4 @@
+resources:
+- world-pv.yaml
+- forwarding-secret-sealed-realm-dev.yaml
+- forwarding-secret-sealed-realm.yaml
