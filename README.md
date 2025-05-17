@@ -129,6 +129,8 @@ Create multi-branch build configurations for the following projects:
   - `git@github.com:Runic-Studios/Velagones.git`
   - `git@github.com:Runic-Studios/Trove.git`
   - `git@github.com:Runic-Studios/Palimpsest.git`
+  - `git@github.com:Runic-Studios/RR-Game.git`
+  - `git@github.com:Runic-Studios/RR-Writer.git`
 - Branches filter by expression `dev|main`
 - Discard old items after 7 days
 
@@ -163,6 +165,8 @@ These must be built and pushed to the harbor register in order for Jenkins to be
   - Velagones
   - Realm-Paper
   - Realm-Velocity
+  - RR-Game
+  - RR-Writer
 
 ### Upload world artifacts
 - Download the `worlds.zip` file from an RR developer.
