@@ -1,0 +1,5 @@
+authSecret:
+  create: false
+  name: "arc-github-config"
+
+certManagerEnabled: false

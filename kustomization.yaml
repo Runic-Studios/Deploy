@@ -4,9 +4,9 @@ kind: Kustomization
 resources:
 - traefik/
 - argocd/
-- jenkins/
 - harbor/
 - agones/
 - nexus/
 - secret/
 - realm/
+- arc/

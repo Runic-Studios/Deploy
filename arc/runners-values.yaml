@@ -1,0 +1,13 @@
+githubConfigUrl: "https://github.com/Runic-Studios"
+githubConfigSecret: "arc-github-config"
+
+controllerServiceAccount:
+  namespace: arc-system
+  name: arc-controller-gha-rs-controller
+
+minRunners: 1
+maxRunners: 5
+runnerScaleSetName: rr-runner
+runnerLabels: rr-runner
+containerMode:
+  type: "dind"

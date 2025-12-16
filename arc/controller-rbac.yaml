@@ -1,0 +1,29 @@
+# Additional ClusterRole with extra permissions needed for the controller
+# This supplements the default RBAC created by the helm chart
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: arc-controller-gha-rs-controller-extra
+rules:
+  # Permissions for managing serviceaccounts across all namespaces (needed for cleanup)
+  - apiGroups: [""]
+    resources: ["serviceaccounts"]
+    verbs: ["get", "list", "watch", "patch", "update"]
+  # Permissions for reading secrets across namespaces
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: arc-controller-gha-rs-controller-extra
+subjects:
+  - kind: ServiceAccount
+    name: arc-controller-gha-rs-controller
+    namespace: arc-system
+roleRef:
+  kind: ClusterRole
+  name: arc-controller-gha-rs-controller-extra
+  apiGroup: rbac.authorization.k8s.io
+

@@ -14,3 +14,11 @@ helmCharts:
     namespace: nexus
     version: 64.2.0
     valuesFile: values.yaml
+
+patches:
+  - patch: |-
+      - op: add
+        path: /metadata/namespace
+        value: nexus
+    target:
+      labelSelector: app.kubernetes.io/instance=nexus-repository-manager
