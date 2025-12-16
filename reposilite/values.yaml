@@ -1,0 +1,14 @@
+persistence:
+  enabled: true
+  storageClass: local-path
+  accessMode: ReadWriteOnce
+  size: 4Gi
+
+resources:
+  requests:
+    memory: 32Mi
+  limits:
+    memory: 256Mi
+
+ingress:
+  enabled: false

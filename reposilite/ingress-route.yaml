@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: reposilite
+  namespace: reposilite
+  annotations:
+    traefik.ingress.kubernetes.io/router.tls.certresolver: cloudflare
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`reposilite.runicrealms.com`)
+      kind: Rule
+      services:
+        - name: reposilite
+          port: http
+  tls:
+    certResolver: cloudflare
+
