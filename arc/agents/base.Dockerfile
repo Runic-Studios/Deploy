@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
     less \
     unzip \
+    zip \
     passwd \
     docker.io \
     openssh-client && \

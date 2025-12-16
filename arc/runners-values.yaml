@@ -5,7 +5,7 @@ controllerServiceAccount:
   namespace: arc-system
   name: arc-controller-gha-rs-controller
 
-minRunners: 0
+minRunners: 1
 maxRunners: 5
 runnerScaleSetName: rr-runner
 runnerLabels: rr-runner

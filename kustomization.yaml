@@ -6,7 +6,6 @@ resources:
 - argocd/
 - harbor/
 - agones/
-- nexus/
 - reposilite/
 - secret/
 - realm/

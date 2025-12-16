@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends unzip curl git 
     unzip protoc-29.4-linux-x86_64.zip -d /usr/local && \
     rm protoc-29.4-linux-x86_64.zip
 
-# Install Go protobuf plugins
+# Install Go protobuf plugins to global path
+ENV GOBIN=/usr/local/bin
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest && \
     go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 

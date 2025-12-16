@@ -21,7 +21,7 @@ In the future this will be moved to use something like Ansible to ensure declara
 
 ### Tailscale and Cloudflare
 - The current setup involves a cluster that is completely hidden behind a tailscale VPN.
-  - Cloudflare manages DNS resolution and points all subdomains (`registry`, `argocd`, `nexus`) to the k3s node IP in the tailscale network.
+  - Cloudflare manages DNS resolution and points all subdomains (`registry`, `argocd`, `reposilite`) to the k3s node IP in the tailscale network.
     - These connections cannot be proxied through cloudflare
   - The tailscale network must have the setting for automatic HTTPS <b>disabled</b>
     - This is because it will attempt to overwrite our existing letsencrypt certs causes much pain
@@ -31,7 +31,7 @@ In the future this will be moved to use something like Ansible to ensure declara
   - Permission to see the correct domain project (`runicrealms.com`)
 - This API Key must be supplied to `traefik/cloudflare.env`, along with the email you are using.
   - Rename `cloudflare.env.template` to `cloudflare.env`.
-- If all is setup correctly, you should now be able to access subdomains `registry`, `argocd`, `nexus` and `jenkins` when connected to tailscale, with proper letsencrypt TLS certs (created with DNS-01 challenge).
+- If all is setup correctly, you should now be able to access subdomains `registry`, `argocd` and `reposilite` when connected to tailscale, with proper letsencrypt TLS certs (created with DNS-01 challenge).
 
 
 ### Configure Secrets
@@ -66,8 +66,8 @@ In the future this will be moved to use something like Ansible to ensure declara
   - You can get the default password using `kubectl -n harbor get secret harbor-core -o jsonpath="{.data.HARBOR_ADMIN_PASSWORD}" | base64 --decode`
 - Get and modify the argocd default admin password at `argocd.runicrealms.com` from the default
   - You can get the default password using `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
-- Login and modify the password at `nexus.runicrealms.com
-  - You can get the default password using `kubectl exec -n nexus $(kubectl get pod -n nexus -l app.kubernetes.io/name=nexus-repository-manager -o jsonpath='{.items[0].metadata.name}') -- cat /nexus-data/admin.password`
+- Use K9s to attach to the reposilite container (press `a`), and run: `toke-generate admin m`.
+  - Note down the username (`admin`) and the password it gives you.
 
 ### Harbor
 - Login to `registry.runicrealms.com`, create a project named `build` and a project named `agents`. There should also be a default one called `library`.
@@ -75,9 +75,6 @@ In the future this will be moved to use something like Ansible to ensure declara
 - Create a robot user named `actions` (will be named `robot$actions`) with permission to read/modify all repositories in projects `build`, `library` etc.
   - Note down the secret since you will need to set it in the GitHub Organization secrets in a later step.
 
-### Nexus
-- Login to `nexus.runicrealms.com`, create an admin password
-- Make sure to allow anonymous pulls from nexus
 
 ### GitHub Actions and ARC
 
@@ -89,8 +86,8 @@ You must configure the following secrets in your GitHub Organization (or in all 
 | `BOT_PAT` | Personal Access Token for creating PRs |
 | `HARBOR_USERNAME` | Harbor robot username (e.g. `robot$actions`) |
 | `HARBOR_PASSWORD` | Harbor robot password |
-| `NEXUS_USERNAME` | Nexus admin username |
-| `NEXUS_PASSWORD` | Nexus admin password |
+| `REPOSILITE_USERNAME` | Reposilite token username you generated (e.g. `admin`) |
+| `REPOSILITE_PASSWORD` | Reposilite token password generated |
 
 - Our custom runners come from a single `AutoscalingRunnerSet` that uses label `rr-runner` for all custom jobs.
   - We use Docker-in-Docker (dind) for pulling various "agent" images that have build tools installed already.
