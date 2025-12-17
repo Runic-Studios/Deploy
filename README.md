@@ -67,7 +67,9 @@ In the future this will be moved to use something like Ansible to ensure declara
 - Get and modify the argocd default admin password at `argocd.runicrealms.com` from the default
   - You can get the default password using `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
 - Use K9s to attach to the reposilite container (press `a`), and run: `toke-generate admin m`.
-  - Note down the username (`admin`) and the password it gives you.
+  - Note down the username (`admin`) and the password it creates, you will need to store it in GitHub soon.
+  - Log into `reposilite.runicrealms.com` with the username and password, go to settings -> maven -> releases and enable "redeployment".
+    - This allows for you to deploy an artifact that already exists, effectively overwriting it.
 
 ### Harbor
 - Login to `registry.runicrealms.com`, create a project named `build` and a project named `agents`. There should also be a default one called `library`.
