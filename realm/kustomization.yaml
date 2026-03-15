@@ -1,3 +1,5 @@
 resources:
 - forwarding-secret-sealed-realm-dev.yaml
 - forwarding-secret-sealed-realm.yaml
+- mongodb-secret-sealed-realm-dev.yaml
+- mongodb-secret-sealed-realm.yaml
