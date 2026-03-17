@@ -4,6 +4,7 @@ resources:
 - namespace.yaml
 - servers-transport.yaml
 - ingress-route.yaml
+- gh-pat-sealed.yaml
 - applications/
 
 patches:

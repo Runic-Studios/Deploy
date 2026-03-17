@@ -1,3 +1,4 @@
 resources:
 - realm-app.yaml
 - realm-dev-app.yaml
+- rr-game-preview-app.yaml

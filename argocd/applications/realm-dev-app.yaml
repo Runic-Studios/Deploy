@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Runic-Studios/Realm-deployment.git
-    path: .
+    path: helm/full
     targetRevision: dev
     helm:
       valueFiles:

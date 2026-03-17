@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: rr-game-preview
+  namespace: argocd
+spec:
+  generators:
+    - pullRequest:
+        github:
+          owner: Runic-Studios
+          repo: RR-Game
+          tokenRef:
+            secretName: gh-pat-secret
+            key: gh_pat
+        requeueAfterSeconds: 60
+
+  template:
+    metadata:
+      name: rr-game-preview-{{number}}
+      namespace: argocd
+
+    spec:
+      project: default
+
+      source:
+        repoURL: https://github.com/Runic-Studios/Realm-deployment.git
+        targetRevision: dev
+        path: helm/rr-game-preview
+        helm:
+          parameters:
+            - name: prTag
+              value: "{{number}}"
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: realm-dev
+
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

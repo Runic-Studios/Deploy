@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: gh-pat-secret
+  namespace: argocd
+spec:
+  encryptedData:
+    gh_pat: AgCYQMQqXhIV/1ZgCV4hBwueDZMDTXkqsitDAySH2lKBILAasR3ewoZ9KXBwnWouISoJZcK4LNnnq0kr7DF6cEH7eRKEQYXS8EUpIZiCMVB2M/6z/F3K9kbeAs0DzqgL7DX7iIZAChSsvMAtvdYdTps1hxH5YdLI+yq66tXa2ZL6TYdHSQw44cjBFGlfA0rb/7eREqSbeQkkK1yTUBA8gGIXnv6DTWcx8VoJPz9vvAQehZPCXpBPKHMPS96kyIy50ciRp6YBi5qtr6TvvYMFJqYhyqD0EhFTEnzC2N7ibxsJJkyKT0LhqmWCg2XEVfPY4rQFMJr5NdhFsNALXwNUomUWhLEPH1sMeGHYqqv9rbqEWN12bxCRGa79VKHamtblhnYXsdhQl491u4dmO2HYJBMvOSj4VXKOheHK+XswtqQO6uGs9M3dRH41wFEitg30DpqRfp/XME2xtfrVyecTyx7RaQrWMSOqAPww7Nb+V5l0OIBK33AQ47PTcIEPzcGS1BUWiQ/irLfDKlThrHof9ReDUYFgqhdwzZQM6+imiyjNgseJ8Y0NC2uybQ0L0B8PTT/1Qn9Xepvellv7IY3dok+7RBr0S8eEYWRx8q0vi5ZvneeMzfnyY8bQ59K30823+D6Sp51a27w12LxJQyvClAVwDzccBGQGOHzNMPhRUYOqpfyd0RH7sZT1iZRH4rpfjh0VKiC8pZ5lRViHjhl60y0EApMhnSl2cNB+FZPnIKTOe8JGXxyg29/24NJ72if+6kuewy3cHSLa2yYyp/+tBtVj7GJfyhJv0/aEqJxw4no+iFsX6Z/BZIK5U7MHDo4=
+  template:
+    metadata:
+      name: gh-pat-secret
+      namespace: argocd

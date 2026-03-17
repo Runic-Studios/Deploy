@@ -51,6 +51,10 @@ In the future this will be moved to use something like Ansible to ensure declara
     - Run `arc/gen-gh-app.sh` to generate the sealed GitHub PAT secrets that our actions runners will use.
       - Note that this generates it twice, once for the `arc-system` namespace and once for the `arc-runners` namespace.
     - Imporant final step: Go to Runic-Studios Organization -> Settings -> Actions -> Runner Groups -> Default, enable "Allow public repositories"
+  - ArgoCD GitHub PAT: ArgoCD will need this for monitoring repositories to create preview applications for PRs
+    - Create a GH PAT for @RunicRealmsGitHub with read permissions for the org
+    - Rename `argocd/gh-pat.env.template` to `argocd/gh-pat.env` and fill in the PAT that you just generated
+    - Run `argocd/gen-gh-pat.sh` to generate the sealed GitHub PAT secret that ArgoCD will use.
 
 ### Deploy
 - Run the `apply.sh` script.
