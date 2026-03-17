@@ -77,6 +77,10 @@ In the future this will be moved to use something like Ansible to ensure declara
 - Create a robot user named `actions` (will be named `robot$actions`) with permission to read/modify all repositories in projects `build`, `library` etc.
   - Note down the secret since you will need to set it in the GitHub Organization secrets in a later step.
 
+### ArgoCD Token
+- Log into `argocd.runicrealms.com` with the password as earlier
+- Go to Settings -> Accounts -> Admin -> Tokens -> Generate Token
+- Keep this token value for later
 
 ### GitHub Actions and ARC
 
@@ -90,6 +94,7 @@ You must configure the following secrets in your GitHub Organization (or in all 
 | `HARBOR_PASSWORD` | Harbor robot password |
 | `REPOSILITE_USERNAME` | Reposilite token username you generated (e.g. `admin`) |
 | `REPOSILITE_PASSWORD` | Reposilite token password generated |
+| `ARGOCD_TOKEN` | ArgoCD Token you generated |
 
 - Our custom runners come from a single `AutoscalingRunnerSet` that uses label `rr-runner` for all custom jobs.
   - We use Docker-in-Docker (dind) for pulling various "agent" images that have build tools installed already.
