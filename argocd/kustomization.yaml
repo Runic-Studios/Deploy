@@ -4,5 +4,7 @@ resources:
 - namespace.yaml
 - servers-transport.yaml
 - ingress-route.yaml
-#- argocd-cm.yaml
 - applications/
+
+patches:
+- path: argocd-cm-patch.yaml
