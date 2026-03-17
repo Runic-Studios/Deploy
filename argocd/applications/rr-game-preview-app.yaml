@@ -30,6 +30,8 @@ spec:
           parameters:
             - name: prTag
               value: "{{number}}"
+            - name: headSha
+              value: "{{head_sha}}"
 
       destination:
         server: https://kubernetes.default.svc
