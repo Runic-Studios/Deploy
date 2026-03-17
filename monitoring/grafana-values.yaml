@@ -1,0 +1,27 @@
+replicas: 1
+
+grafana.ini:
+  auth.anonymous:
+    enabled: true
+    org_role: Viewer
+  # Keep the login form available so you can sign in as admin when needed
+  auth:
+    disable_login_form: false
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        url: http://loki.monitoring.svc.cluster.local:3100
+        access: proxy
+        isDefault: true
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi

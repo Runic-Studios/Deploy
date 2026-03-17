@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monitoring
+
+resources:
+  - namespace.yaml
+  - grafana-ingress-route.yaml
+
+helmCharts:
+  - name: loki
+    repo: https://grafana.github.io/helm-charts
+    releaseName: loki
+    namespace: monitoring
+    valuesFile: loki-values.yaml
+    version: 6.6.2
+
+  - name: promtail
+    repo: https://grafana.github.io/helm-charts
+    releaseName: promtail
+    namespace: monitoring
+    valuesFile: promtail-values.yaml
+    version: 6.16.6
+
+  - name: grafana
+    repo: https://grafana.github.io/helm-charts
+    releaseName: grafana
+    namespace: monitoring
+    valuesFile: grafana-values.yaml
+    version: 8.4.7

@@ -10,3 +10,4 @@ resources:
 - secret/
 - realm/
 - arc/
+- monitoring/

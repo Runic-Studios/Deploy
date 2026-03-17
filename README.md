@@ -56,6 +56,31 @@ In the future this will be moved to use something like Ansible to ensure declara
     - Rename `argocd/gh-pat.env.template` to `argocd/gh-pat.env` and fill in the PAT that you just generated
     - Run `argocd/gen-gh-pat.sh` to generate the sealed GitHub PAT secret that ArgoCD will use.
 
+### Configure FD Limits
+
+- With our use of Loki/Promtail for logging, many default Linux inotify FS limits are inadequate
+- If running on K3s, edit directly on the node:
+  - Open `sudo vi /etc/sysctl.conf` and add the lines:
+```
+fs.inotify.max_user_watches=524288
+fs.inotify.max_user_instances=512
+```
+  - Apply: `sudo sysctl -p`
+- If running on a managed Kubernetes solution, you can add it instead as a an init container for `monitoring/grafana-values.yaml`:
+```yml
+extraInitContainers:
+  - name: init-inotify
+    image: busybox:latest
+    command:
+      - sh
+      - -c
+      - |
+        sysctl -w fs.inotify.max_user_instances=512
+        sysctl -w fs.inotify.max_user_watches=524288
+    securityContext:
+      privileged: true
+```
+
 ### Deploy
 - Run the `apply.sh` script.
   - Note: the first time your run this, you may get errors about CRDs for traefik not being installed yet. Simply run it twice (just for the first time) as this will apply CRDs again.
@@ -74,6 +99,8 @@ In the future this will be moved to use something like Ansible to ensure declara
   - Note down the username (`admin`) and the password it creates, you will need to store it in GitHub soon.
   - Log into `reposilite.runicrealms.com` with the username and password, go to settings -> maven -> releases and enable "redeployment".
     - This allows for you to deploy an artifact that already exists, effectively overwriting it.
+- Modify the Grafana password at `grafana.runicrealms.com` from the default
+  - You can get the default password using `kubectl get secret -n monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo`
 
 ### Harbor
 - Login to `registry.runicrealms.com`, create a project named `build` and a project named `agents`. There should also be a default one called `library`.

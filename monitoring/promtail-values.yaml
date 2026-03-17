@@ -1,0 +1,23 @@
+config:
+  logLevel: info
+  serverPort: 3101
+
+  clients:
+    - url: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
+
+  snippets:
+    pipelineStages:
+      # Drop logs from outside the realm namespaces before they reach Loki,
+      # keeping storage usage minimal.
+      - match:
+          selector: '{namespace!~"realm|realm-dev"}'
+          action: drop
+          drop_counter_reason: unwanted_namespace
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
