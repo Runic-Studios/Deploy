@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+set -euo pipefail
 
 TARGET="/mnt/world/worlds.zip"
 SOURCE="./worlds.zip"
 
 # Copy the file
-sudo mkdir $(dirname "$TARGET")
+sudo mkdir -p $(dirname "$TARGET")
 echo "Copying $SOURCE to $TARGET"
 sudo cp "$SOURCE" "$TARGET"
 echo "Done."
